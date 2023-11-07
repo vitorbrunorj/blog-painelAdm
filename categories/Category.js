@@ -12,4 +12,6 @@ const Category = connection.define('categories', {
   },
 });
 
+Category.sync({ force: false }); // Sincroniza com o banco de dados
+
 module.exports = Category;
