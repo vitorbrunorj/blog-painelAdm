@@ -1,26 +1,45 @@
-<%- include('../../partials/header')%>
-<%-include('../../partials/navbar')%>
+<%- include('../../partials/header') %> <%-
+include('../../partials/navbar') %>
 
 <div class="container">
   <hr />
   <h2>Categorias</h2>
+  <a class="btn btn-success" href="/admin/categories/new"
+    >Criar nova categoria</a
+  >
   <hr />
-  <table class="table table-bordered ">
-    <thead>
+  <table class="table table-bordered mx-auto" style="width: 80%">
+    <thead class="text-center align-middle">
       <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Título</th>
-        <th scope="col">Slug</th>
-        <th scope="col">Ações</th>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Slug</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
+      <% categories.forEach(category => { %>
       <tr>
-        <th>1</th>
-        <th>Dev Web</th>
-        <th>dev-web</th>
-        <th></th>
+        <td class="text-center align-middle"><%= category.id %></td>
+        <td class="text-center align-middle"><%= category.title %></td>
+        <td class="text-center align-middle"><%= category.slug %></td>
+        <td class="text-center align-middle">
+          <div class="d-flex justify-content-center">
+            <a
+              class="btn btn-warning align-middle me-2 flex-grow-1 w-50"
+              href="/categories/edit/<%= category.id %>"
+              >Editar</a
+            >
+            <form method="POST" action="/categories/delete">
+              <input type="hidden" name="id" value="<%= category.id %>" />
+              <button class="btn btn-danger align-middle flex-grow-1">
+                Excluir
+              </button>
+            </form>
+          </div>
+        </td>
       </tr>
+      <% }) %>
     </tbody>
   </table>
 </div>
