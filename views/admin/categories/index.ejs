@@ -1,5 +1,6 @@
 <%- include('../../partials/header') %> <%-
-include('../../partials/navbar') %>
+include('../../partials/navbar') %> <%-
+include('../../partials/popupConfDelete')%>
 
 <div class="container">
   <hr />
@@ -30,7 +31,11 @@ include('../../partials/navbar') %>
               href="/categories/edit/<%= category.id %>"
               >Editar</a
             >
-            <form method="POST" action="/categories/delete">
+            <form
+              method="POST"
+              action="/categories/delete"
+              onsubmit="confirmarDelete(event, this)"
+            >
               <input type="hidden" name="id" value="<%= category.id %>" />
               <button class="btn btn-danger align-middle flex-grow-1">
                 Excluir
@@ -44,4 +49,4 @@ include('../../partials/navbar') %>
   </table>
 </div>
 
-<%- include('../../partials/footer') %>
+<%- include('../../partials/footer')%>
