@@ -7,7 +7,7 @@ include('../../partials/navbar') %>
       <h2>Edição de categoria</h2>
     </div>
     <div class="card-body">
-      <form method="POST" action="/categories/save">
+      <form method="POST" action="/categories/update">
         <input
           class="form-control"
           type="text"
@@ -15,6 +15,7 @@ include('../../partials/navbar') %>
           placeholder="Defina o título da categoria"
           value="<%= category.title %>"
         />
+        <input type="hidden" name="id" value="<%= category.id %>" />
         <button class="btn btn-success my-3">Atualizar</button>
       </form>
     </div>
