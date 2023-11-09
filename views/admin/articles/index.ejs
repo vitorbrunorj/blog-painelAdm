@@ -1,0 +1,26 @@
+<%- include('../../partials/header') %> <%-
+include('../../partials/navbar') %> <%-
+include('../../partials/popupConfDelete')%>
+
+<div class="container">
+  <hr />
+  <h2>Artigos</h2>
+  <a class="btn btn-success" href="/admin/articles/new"
+    >Criar novo artigo</a
+  >
+  <hr />
+  <table class="table table-bordered mx-auto" style="width: 80%">
+    <thead class="text-center align-middle">
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Slug</th>
+        <th>Category</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<%- include('../../partials/footer')%>
