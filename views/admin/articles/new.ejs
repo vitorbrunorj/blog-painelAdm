@@ -20,6 +20,13 @@ include('../../partials/navbar') %>
           name="body"
           id="article"
         ></textarea>
+        <label class="my-3">Categoria</label>
+        <select name="category" class="form-control">
+          <% categories.forEach((category) => { %>
+          <option value="<%= category.id %>"><%= category.title %></option>
+          <% }) %>
+        </select>
+
         <button class="btn btn-success my-3">Criar novo Artigo</button>
       </form>
     </div>

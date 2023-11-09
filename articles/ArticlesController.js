@@ -7,12 +7,13 @@ router.get('/articles', (req, res) => {
 });
 
 router.get('/admin/articles/new', (req, res) => {
-  Category.findAll().then((categories) => {
-    res.render('admin/articles/new', { categories: categories });
-  });
-  res.send('Rotas para criar uma novo artigo');
-
-  res.render('admin/articles/new');
+  Category.findAll()
+    .then((categories) => {
+      res.render('admin/articles/new', { categories: categories });
+    })
+    .catch((error) => {
+      res.redirect('/');
+    });
 });
 
 module.exports = router;
