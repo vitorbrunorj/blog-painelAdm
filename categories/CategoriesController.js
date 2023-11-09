@@ -68,15 +68,16 @@ router.post('/categories/update', (req, res) => {
   let id = req.body.id;
   let title = req.body.title;
 
-  Category.update({ title: title, slug: slugify(title) }, { where: { id: id } })
+  Category.update(
+    { title: title, slug: slugify(title) },
+    { where: { id: id } }
+  )
     .then(() => {
       res.redirect('/admin/categories');
     })
     .catch((err) => {
       res.redirect('/admin/categories');
     });
-
-
 });
 
 module.exports = router;

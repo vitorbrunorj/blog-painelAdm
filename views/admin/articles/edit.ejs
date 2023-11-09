@@ -1,0 +1,75 @@
+<%- include('../../partials/header') %> <%-
+include('../../partials/navbar') %>
+
+<div class="container my-3">
+  <div class="card">
+    <div class="card-header">
+      <h2>Editar Artigo</h2>
+    </div>
+    <div class="card-body">
+      <form method="post" action="/articles/update">
+        <input
+          class="form-control mb-3"
+          type="text"
+          name="title"
+          placeholder="Defina o título do artigo"
+          value="<%= article.title %>"
+        />
+        <textarea
+          class="form-control"
+          placeholder="Escreva o artigo aqui!"
+          name="body"
+          id="article"
+        ><%= article.body %></textarea>
+        <label class="my-3">Categoria</label>
+        <select name="category" class="form-control">
+          <% categories.forEach((category) => { %>
+          <option value="<%= category.id %>" <%= category.id == article.categoryId ? 'selected' : '' %>><%= category.title %></option>
+          <% }) %>
+        </select>
+        <input type="hidden" name="id" value="<%= article.id %>" />
+        <button class="btn btn-success my-3">Atualizar Artigo</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../../partials/footer') %>
+<script src="/tinymce/tinymce.min.js"></script>
+
+<script>
+  tinymce.init({
+    selector: '#article',
+    height: 400,
+    menubar: true,
+    plugins: [
+      'spellchecker',
+      'advlist',
+      'autolink',
+      'print',
+      'preview',
+      'hr',
+      'searchreplace',
+      'wordcount',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'save',
+      'paste',
+      'emoticons',
+      'link',
+      'image',
+      'paste',
+      'list',
+      'textcolor',
+      'codesample',
+      'table',
+      'charmap',
+    ],
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | table | link image | bullist numlist',
+    language: 'pt_BR',
+    browser_spellcheck: true,
+    wordcount_countchars: true,
+  });
+</script>
