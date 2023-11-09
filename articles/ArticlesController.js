@@ -7,18 +7,12 @@ router.get('/articles', (req, res) => {
 });
 
 router.get('/admin/articles/new', (req, res) => {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  Category.findAll().then(categories => {
+  Category.findAll().then((categories) => {
     res.render('admin/articles/new', { categories: categories });
   });
   res.send('Rotas para criar uma novo artigo');
-=======
+
   res.render('admin/articles/new');
->>>>>>> Stashed changes
-=======
-  res.render('admin/articles/new');
->>>>>>> Stashed changes
 });
 
 module.exports = router;
