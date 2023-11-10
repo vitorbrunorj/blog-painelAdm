@@ -1,0 +1,33 @@
+<% if (typeof error != 'undefined') { %>
+<div
+  id="alert"
+  class="alert alert-danger alert-dismissible fade show - mx-auto w-75"
+  role="alert"
+>
+  <%= error %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>
+
+<style>
+  @keyframes fadeout {
+    0% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  #alert {
+    animation: fadeout 4s forwards;
+  }
+</style>
