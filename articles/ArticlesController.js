@@ -82,6 +82,7 @@ router.post('/articles/delete', (req, res) => {
 
 router.get('/admin/articles/edit/:id', (req, res) => {
   let id = req.params.id;
+  let error = req.query.error;
 
   if (isNaN(id)) res.redirect('/admin/articles');
 
@@ -92,6 +93,7 @@ router.get('/admin/articles/edit/:id', (req, res) => {
           res.render('./admin/articles/edit', {
             article: article,
             categories: categories,
+            error: error,
           });
         });
       } else {
@@ -109,19 +111,39 @@ router.post('/articles/update', (req, res) => {
   let body = req.body.body;
   let category = req.body.category;
 
-  Article.update(
-    { title: title, body: body, categoryId: category },
-    {
-      where: {
-        id: id,
-      },
-    }
-  )
-    .then(() => {
-      res.redirect('/admin/articles');
-    })
-    .catch((err) => {
-      res.redirect('/');
-    });
+  if (title == undefined || title == '') {
+    res.redirect(
+      '/admin/articles/edit/' +
+        id +
+        '?error=É necessário o título do artigo!'
+    );
+  } else if (body == undefined || body == '') {
+    res.redirect(
+      '/admin/articles/edit/' +
+        id +
+        '?error=É necessário escrever alguma coisa!'
+    );
+  } else if (category == undefined || category == '') {
+    res.redirect(
+      '/admin/articles/edit/' +
+        id +
+        '?error=É necessário selecionar uma categoria!'
+    );
+  } else {
+    Article.update(
+      { title: title, body: body, categoryId: category },
+      {
+        where: {
+          id: id,
+        },
+      }
+    )
+      .then(() => {
+        res.redirect('/admin/articles');
+      })
+      .catch((err) => {
+        res.redirect('/');
+      });
+  }
 });
 module.exports = router;
