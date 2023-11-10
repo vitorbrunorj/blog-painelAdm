@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Database
-
 connection
   .authenticate()
   .then(() => {
@@ -38,6 +37,28 @@ app.get('/', (req, res) => {
   Article.findAll().then((articles) => {
     res.render('index', { articles: articles });
   });
+});
+
+app.get('/:slug', (req, res) => {
+  let slug = req.params.slug;
+  Article.findOne({
+    where: { slug: slug },
+  })
+    .then((articles) => {
+      if (articles != undefined) {
+        Category.findAll().then((categories) => {
+          res.render('article', {
+            article: articles,
+            categories: categories,
+          });
+        });
+      } else {
+        res.redirect('/');
+      }
+    })
+    .catch((err) => {
+      res.redirect('/');
+    });
 });
 
 app.listen(3000, () => {
