@@ -23,11 +23,11 @@
       <% articles.forEach((article) => { %>
       <div class="text-center mb-4">
         <div class="card h-100 d-flex flex-column justify-content-between">
-          <div class="card-header">
+          <div class="card-header bg-body-secondary">
             <h2 class="h5"><%= article.title %></h2>
           </div>
-          <div class="card-body">
-            <a class="btn btn-success w-50" href="/<%= article.slug %>"
+          <div class="card-body bg-body-tertiary">
+            <a class="btn btn-success w-25" href="/<%= article.slug %>"
               >Ler artigo</a
             >
           </div>

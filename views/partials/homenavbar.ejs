@@ -3,9 +3,18 @@
     <img class="m-2" src="/img/guia.png" alt="Logo guia do programador" />
   </a>
 
+  <li class="navbar-nav">
+    <a class="nav-link" href="/">Home</a>
+  </li>
   <ul class="navbar-nav">
+    <% categories.forEach(category => { %>
+
     <li class="nav-item">
-      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/category/<%= category.slug%>"
+        ><%= category.title %></a
+      >
     </li>
+
+    <% }) %>
   </ul>
 </nav>
