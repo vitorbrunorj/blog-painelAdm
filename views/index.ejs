@@ -1,8 +1,39 @@
-<%- include('partials/header') %>
+<%- include('partials/header') %> <%- include('partials/homenavbar') %>
 
 <body>
-  <%- include('partials/navbar') %>
-  <h1 class="text-bg-info">testando as views</h1>
+  <div class="container my-5">
+    <div class="jumbotron bg-primary-subtle text-center">
+      <h1 class="display-3 my-2">Bem vindo!</h1>
+      <p class="lead">
+        Este é um simples blog para treinamento de conhecimentos.
+      </p>
+      <hr />
+      <div
+        class="d-flex align-items-center justify-content-center"
+        style="height: 100%"
+      >
+        <p class="text-center">
+          Treinamento de conhecimentos em Node.js, Express, EJS, Sequelize,
+          MySQL, Bootstrap, HTML e CSS.
+        </p>
+      </div>
+      <p class="lead mb-5"></p>
+    </div>
+    <div class="row justify-content-center">
+      <% articles.forEach((article) => { %>
+      <div class="text-center mb-4">
+        <div class="card h-100 d-flex flex-column justify-content-between">
+          <div class="card-header">
+            <h2 class="h5"><%= article.title %></h2>
+          </div>
+          <div class="card-body">
+            <a class="btn btn-success w-50" href="">Ler artigo</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
 </body>
 
 <%- include('partials/footer') %>
