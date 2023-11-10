@@ -4,7 +4,6 @@ const Category = require('../categories/Category');
 const Article = require('./Article');
 const slugify = require('slugify');
 
-
 router.get('/admin/articles', (req, res) => {
   Article.findAll({
     include: [{ model: Category }],
@@ -14,16 +13,25 @@ router.get('/admin/articles', (req, res) => {
 });
 
 router.get('/admin/articles/new', (req, res) => {
+  let error = req.query.error;
+
   Category.findAll()
     .then((categories) => {
-      res.render('admin/articles/new', { categories: categories });
+      res.render('admin/articles/new', {
+        error: error,
+        categories: categories,
+      });
     })
     .catch((error) => {
       res.redirect('/');
     });
 });
-
-router.post('/articles/save', (req, res) => {
+/* router.get('/admin/articles/new', (req, res) => {
+  let error = req.query.error;
+  res.render('admin/articles/new', { error: error });
+});
+*/
+/* router.post('/articles/save', (req, res) => {
   let title = req.body.title;
   let body = req.body.body;
   let category = req.body.category;
@@ -36,6 +44,41 @@ router.post('/articles/save', (req, res) => {
   }).then(() => {
     res.redirect('/admin/articles');
   });
+});
+ */
+
+router.get('/admin/articles/new', (req, res) => {
+  let error = req.query.error;
+  res.render('admin/articles/new', { error: error });
+});
+
+router.post('/articles/save', (req, res) => {
+  let title = req.body.title;
+  let body = req.body.body;
+  let category = req.body.category;
+
+  if (title == undefined || title == '') {
+    res.redirect(
+      '/admin/articles/new?error=É necessário o título do artigo!'
+    );
+  } else if (body == undefined || body == '') {
+    res.redirect(
+      '/admin/articles/new?error=É necessário escrever alguma coisa!'
+    );
+  } else if (category == undefined || category == '') {
+    res.redirect(
+      '/admin/articles/new?error=É necessário selecionar uma categoria!'
+    );
+  } else {
+    Article.create({
+      title: title,
+      slug: slugify(title),
+      body: body,
+      categoryId: category,
+    }).then(() => {
+      res.redirect('/admin/articles');
+    });
+  }
 });
 
 router.post('/articles/delete', (req, res) => {

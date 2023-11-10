@@ -39,7 +39,7 @@ include('../../partials/navbar') %>
 <script>
   tinymce.init({
     selector: '#article',
-    height: 400,
+    height: 300,
     menubar: true,
     plugins: [
       'spellchecker',
@@ -72,5 +72,6 @@ include('../../partials/navbar') %>
     wordcount_countchars: true,
   });
 </script>
-<%- include('../../partials/alert') %> <%-
-include('../../partials/footer')%>
+
+<%- include('../../partials/alertArt')%>
+<%- include('../../partials/footer')%>
