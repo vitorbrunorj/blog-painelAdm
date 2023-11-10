@@ -26,26 +26,6 @@ router.get('/admin/articles/new', (req, res) => {
       res.redirect('/');
     });
 });
-/* router.get('/admin/articles/new', (req, res) => {
-  let error = req.query.error;
-  res.render('admin/articles/new', { error: error });
-});
-*/
-/* router.post('/articles/save', (req, res) => {
-  let title = req.body.title;
-  let body = req.body.body;
-  let category = req.body.category;
-
-  Article.create({
-    title: title,
-    slug: slugify(title),
-    body: body,
-    categoryId: category,
-  }).then(() => {
-    res.redirect('/admin/articles');
-  });
-});
- */
 
 router.get('/admin/articles/new', (req, res) => {
   let error = req.query.error;
